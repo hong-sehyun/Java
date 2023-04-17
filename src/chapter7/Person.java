@@ -15,7 +15,6 @@ public class Person {
 		this.name = name;
 		this.age = age;
 		System.out.println("Person생성자1 실행");
-
 	}
 
 	public String getName() {
