@@ -15,6 +15,15 @@ public class MessengerTest {
 		iPhone.getMessage();
 		iPhone.setMessage("hello");
 		iPhone.clearmessage();
+//		iPhone.draw_textBox();
+//		iPhone.draw_submittButton();
+		iPhone.fileUpload();
+		iPhone.downUpload();
+//		iPhone.getMsg();
+		
+		//오류 - page324 참조
+		
+		System.out.print("\n");
 		
 		galaxy.setLogin(true);
 		galaxy.getMessage();

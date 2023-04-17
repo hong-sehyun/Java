@@ -1,5 +1,9 @@
 package chapter7.abstraction;
 
+import chapter7.Employee;
+
+//import chapter7.Employee;
+
 abstract class Employee1 {
 	String name;
 	int salary;
@@ -42,6 +46,22 @@ class Director1 extends Manager1 {
 }
 
 public class HRSTest1 {
+	
+	public static void calcTax() {
+		//인자로 전달된 인스턴스의 소득세 계산		
+	}
+	public static void calcTax(Salesman1 s) {
+		//인자로 전달된 인스턴스의 소득세 계산		
+	}
+	public static void calcTax(Consultant1 c) {
+		//인자로 전달된 인스턴스의 소득세 계산		
+	}
+	public static void calcTax(Director1 d) {
+		//인자로 전달된 인스턴스의 소득세 계산		
+	}
+	public static void calcTax(Employee e) {
+		//인자로 전달된 인스턴스의 소득세 계산		
+	}
 
 	public static void main(String[] args) {
 		Salesman1 s = new Salesman1();
