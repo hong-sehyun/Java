@@ -48,9 +48,9 @@ class StudentA {
 		return "sid = " + sid + ", sname = " + sname + ", city = " + city;
 	}
 
-	public void showStudent(String toString) {
-		System.out.println("객체: " + countStudents);
-		this.toString();
+	public void showStudentA() {
+		System.out.println("객체: " + countStudents);		
+		System.out.println(this.toString());
 
 	}
 }
@@ -59,31 +59,17 @@ public class TestStudent {
 
 	public static void main(String[] args) {
 
-		 Student arry[] = new Student[5];
+		StudentA arry[] = new StudentA[5];
 
-		 arry[0] = new Student();
-		 arry[1] = new Student(202301);
-		 arry[2] = new Student(202302, "Hong");
-		 arry[3] = new Student(202303, "Lee", "Busan");
-		 arry[4] = new Student(202304, "Na", "jeju");
-//		StudentA s1 = new StudentA();
-//		StudentA s2 = new StudentA(202301);
-//		StudentA s3 = new StudentA(202302, "Hong");
-//		StudentA s4 = new StudentA(202303, "Lee", "Busan");
-//		StudentA s5 = new StudentA(202304, "Na", "jeju");
+		arry[0] = new StudentA();
+		arry[1] = new StudentA(202301);
+		arry[2] = new StudentA(202302, "Hong");
+		arry[3] = new StudentA(202303, "Lee", "Busan");
+		arry[4] = new StudentA(202304, "Na", "jeju");
 
-
-//
-//		System.out.println(s1.showStudent());
-//		System.out.println(s2.showStudent());
-//		System.out.println(s3.toString());
-//		System.out.println(s4.toString());
-//		System.out.println(s5.toString());
-
-		 
-		 for (int i = 0; i < 5; i++) {
-			 arry[i].showStudent();    //생성된 객체 모두를 출력한다.
-		 }
+		for (int i = 0; i < 5; i++) {
+			arry[i].showStudentA(); // 생성된 객체 모두를 출력한다.
+		}
 
 	}
 
