@@ -3,7 +3,7 @@ package chapter10;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-//p478 Iterator 실습
+//p478 Iterator 실습 
 //p481~488 그냥 넘어감
 
 public class Test02 {
