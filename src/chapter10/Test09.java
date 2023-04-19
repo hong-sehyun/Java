@@ -1,5 +1,5 @@
 package chapter10;
-//TreeMap
+//TreeMap 실습
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -13,7 +13,7 @@ public class Test09 {
 		users.put("22", "홍길동");
 		users.put("52", "홍길동");
 		users.put("15", "홍길동");
-
+ 
 		System.out.println(" " + users.toString());
 	
 		Map.Entry<String, String> entry = null;
