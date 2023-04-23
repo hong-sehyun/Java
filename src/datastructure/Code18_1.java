@@ -2,7 +2,7 @@ package datastructure;
 
 import java.util.Scanner;
 
-public class Code18 {
+public class Code18_1 {
 
 	public static void main(String[] args) {
 
@@ -27,13 +27,18 @@ public class Code18 {
 		for(int i = n-1; i > 0; i--) {
 			for(int j = 0; j < n; j++) {
 				if(data[j]>data[j+1]) {
-					int tmp = data[j];
-					data[j]=data[j+1];
-					data[j+1]=tmp;
+					//swap data[j] and data[j+1]
+					swap (data[j], data[j+1]);
+					
 				}					
 			}
 		}	
-		return;
-		//아무것도 리턴하지 않기 때문에 return은 안써도 됨
+	}
+	//작동하지 않음 참조에 의한 호출이 아닌 값에 의 한 호출익 때문
+	//자바와 c는참조에 의한 호출을 지원하지 않
+	static void swap(int a, int b) {
+		int tmp = a;
+		a = b;
+		b = tmp;
 	}
 }
