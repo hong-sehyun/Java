@@ -52,33 +52,46 @@ public class 행렬 {
 		return a;
 		
 	}
+	
+	static int[][] C(int[][] a, int[][] b) {
+		int[][] sum = new int[a.length][b[0].length];
+		for (int i = 0; i < a.length; i++) {
+			for (int k = 0; k < b[0].length; k++) {
+
+				for (int j = 0; j < a.length; j++) {
+					sum[i][k] += a[i][j]*b[j][k];
+				}
+			}
+		} return sum;
+	}
 
 	public static void main(String[] args) {
 		int[][] A = new int[2][3];
 		int[][] A1 = new int[2][3];
 		int[][] B = new int[3][4];
-		int[][] C = new int[2][4];
+//		int[][] C = new int[2][4];
 		int[][] D = new int[3][2];
 		System.out.println("A");
 		getData(A);
 		showData(A);
-		System.out.println("\nA1");
-		getData(A1);
-		showData(A1);
-		System.out.println("\nA2 = A + A1");
-		showData(A2(A,A1));
+//		System.out.println("\nA1");
+//		getData(A1);
+//		showData(A1);
+//		System.out.println("\nA2 = A + A1");
+//		showData(A2(A,A1));
 
-		/*
+		
 		System.out.println("\n====================");
+		System.out.println("\nB");
 		getData(B);
 		showData(B);
-		System.out.println("\n");
-		getData(C);
-		showData(C);
-		System.out.println("\n");
-		getData(D);
-		showData(D);
-		*/
+		System.out.println("\nC");
+//		getData(C(A,B));
+		showData(C(A,B));
+//		System.out.println("\nD");
+//		getData(D);
+//		showData(D);
+		
 	}
 
 }
