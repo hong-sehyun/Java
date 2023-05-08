@@ -1,4 +1,4 @@
-package algorithm_ch2;
+package 자료구조_2장_기본자료구조;
 
 public class 스트링배열정렬 {
 
