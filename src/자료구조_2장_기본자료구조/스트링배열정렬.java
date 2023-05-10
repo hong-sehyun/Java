@@ -16,6 +16,7 @@ public class 스트링배열정렬 {
 		String temp = null;
 		for (int i = 1;  i < items.length; i++) {
 			for(int j = 0; j <= items.length-1; j++) {
+				if (items[i].)
 				if(items[j].compareTo(items[i]) > items[i].compareTo(items[j])) {
 					temp = items[i];
 					items[i] = items[j];

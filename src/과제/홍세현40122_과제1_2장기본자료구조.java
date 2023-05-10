@@ -1,4 +1,5 @@
-package 자료구조_2장_기본자료구조;
+package 과제;
+
 
 class PhyscData implements Comparable<PhyscData> {
 	String name;
@@ -13,7 +14,7 @@ class PhyscData implements Comparable<PhyscData> {
 	
 	@Override
 	public String toString() {
-		return "PhyscData [name=" + name + ", height=" + height + ", vision=" + vision + "]";
+		return "[" + name + ", " + height + ", " + vision + "]";
 	}
 
 	public void showData() {
@@ -27,8 +28,8 @@ class PhyscData implements Comparable<PhyscData> {
 			if(this.height == d1.height) {
 				if(this.vision == d1.vision) 
 					return 0;
-					if(this.vision > d1.vision) return 1;
-					else return -1;
+				else if(this.vision > d1.vision) return 1;
+				else return -1;
 			} else if(this.height > d1.height) return 1;
 			  else return -1;
 		} 
@@ -40,44 +41,19 @@ class PhyscData implements Comparable<PhyscData> {
 	
 }
 
-public class 과제1_2장기본자료구조 {
+public class 홍세현40122_과제1_2장기본자료구조 {
 	// static - 객체가 없어도 쓸수있음
 	static void swap(PhyscData[] data, int i, int j) {
-		PhyscData[] tmp = new PhyscData[0];
-		tmp[0] = null;
+		PhyscData tmp = null;
 
-		tmp[0] = data[i];
+		tmp = data[i];
 		data[i] = data[j];
-		data[j] = tmp[0];
+		data[j] = tmp;
 
 	}
-				
-				
-				//===========================
-//				if(data[j].name.compareTo(data[i].name) > data[i].name.compareTo(data[j].name)) {
-//					if(data[i].height < data[j].height) {
-//						if(data[i].vision < data[j].vision) {
-//							tmp[0] = data[i];
-//							data[i] = data[j];
-//							data[i] = tmp[0];
-//						}
-//					}
-//					
-//				}
-//				
-//
-//			}
-//		}
-		
-		/*
-		int tmp = a;
-		a = b;
-		b = tmp;
-		*/
-//	}
+	
 	static void sortData(PhyscData[] data) {
-		PhyscData[] tmp = new PhyscData[0];
-		tmp[0] = null;
+		
 		for (int i = 0; i < data.length; i++) {
 			for(int j =i +1 ; j < data.length; j++) {
 				if(data[i].compareTo(data[j]) > 0) {						
@@ -87,15 +63,33 @@ public class 과제1_2장기본자료구조 {
 		}	
 	}
 	
+	static int linearSearch(PhyscData[] data, PhyscData key) {
+		for(int i = 0; i < data.length; i++) {
+			if(data[i].compareTo(key) == 0) return i;
+		} return -1;
+	}
+	
+	static int binarySearch(PhyscData [] data, PhyscData key) {
+		int n = data.length;
+		int pc = n/2;
+		do {	
+			if(data[pc].compareTo(key) == 0) return pc;
+			else if(data[pc].compareTo(key) < 0) pc += 1;
+			else pc -= 1;
+		} while (pc <= data.length);
+		return -1;
+	}
+
 	static void showData(PhyscData[] data) {
 		// 난수 생성하여 배열에 입력
 		for (int i = 0; i < data.length; i++) {
-			System.out.println(data[i] + " ");
+			System.out.print(data[i] + " ");
 		}
+		System.out.println();
 	}
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
+
 		PhyscData[] data = {
 				new PhyscData("홍길동", 162, 0.3),
 				new PhyscData("홍동", 164, 1.3),
@@ -106,8 +100,6 @@ public class 과제1_2장기본자료구조 {
 				new PhyscData("최길동", 169, 0.5),
 		};
 
-	
-		
 		showData(data);
 		sortData(data);
 		showData(data);

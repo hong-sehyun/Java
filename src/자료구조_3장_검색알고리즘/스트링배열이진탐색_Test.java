@@ -10,36 +10,40 @@ public class 스트링배열이진탐색_Test {
 		System.out.println();
 	}
 	
+	static void swap(String[]data, int i, int j) {
+		String tmp = data[i];
+		data[i] = data[j];
+		data[j] = tmp;
+	}
 	static void sortData(String [] data) {
 		String tmp = null;
-		for(int i = 1; i < data.length; i++) {
-			for(int j = 0; j < data.length - i; j++) {
-				if(data[j].compareTo(data[j+1]) > data[j+1].compareTo(data[j])) {
-					tmp = data[j];
-					data[j] = data[j+1];
-					data[j+1] = tmp;
+		for(int i = 0; i < data.length; i++) {
+			for(int j = i+1; j < data.length; j++) {
+				if(data[i].compareTo(data[j]) > 0) {
+					swap(data, i, j);
+			
 				}
 					
 			}
 		}
 	}
 	
-	static String linearSearch(String [] data, String key) {
-		for(int i = 0; i < data.length; i++) {
-			if(data[i].compareTo(key) == 0) return key;
-		}
-		return null;
+	static int linearSearch(String [] data, String key) {
+		for(int i = 0; i < data.length; i++)
+			if(data[i].compareTo(key) == 0)
+				return i;
+		return -1;
 	}
 	
-	static String binarySearch(String [] data, String key) {
+	static int binarySearch(String [] data, String key) {
 		int n = data.length;
 		int pc = n/2;
 		do {	
-			if(data[pc].compareTo(key) == 0) return key;
+			if(data[pc].compareTo(key) == 0) return pc;
 			else if(data[pc].compareTo(key) < 0) pc += 1;
 			else pc -= 1;
 		} while (pc <= data.length);
-		return null;
+		return -1;
 	}
 
 	public static void main(String[] args) {
@@ -50,7 +54,7 @@ public class 스트링배열이진탐색_Test {
 		showData(data);
 		
 		String key = "감";
-		String result = linearSearch(data, key);
+		int result = linearSearch(data, key);
 		System.out.println("\nlinearSearch(): result = " + result);
 		
 		key = "배";

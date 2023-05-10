@@ -1,7 +1,5 @@
 package 과제;
 
-import java.util.ArrayList;
-import java.util.Collections;
 
 class PhyscData implements Comparable<PhyscData> {
 	String name;
@@ -16,7 +14,7 @@ class PhyscData implements Comparable<PhyscData> {
 	
 	@Override
 	public String toString() {
-		return "[name=" + name + ", height=" + height + ", vision=" + vision + "]";
+		return "[" + name + ", " + height + ", " + vision + "]";
 	}
 
 	public void showData() {
@@ -45,36 +43,66 @@ class PhyscData implements Comparable<PhyscData> {
 
 public class 과제1_2장기본자료구조 {
 	// static - 객체가 없어도 쓸수있음
+	static void swap(PhyscData[] data, int i, int j) {
+		PhyscData tmp = null;
 
+		tmp = data[i];
+		data[i] = data[j];
+		data[j] = tmp;
+
+	}
 	
+	static void sortData(PhyscData[] data) {
+		
+		for (int i = 0; i < data.length; i++) {
+			for(int j =i +1 ; j < data.length; j++) {
+				if(data[i].compareTo(data[j]) > 0) {						
+					swap (data, i, j);
+				}
+			}
+		}	
+	}
+	
+	static int linearSearch(PhyscData[] data, PhyscData key) {
+		for(int i = 0; i < data.length; i++) {
+			if(data[i].compareTo(key) == 0) return i;
+		} return -1;
+	}
+	
+	static int binarySearch(PhyscData [] data, PhyscData key) {
+		int n = data.length;
+		int pc = n/2;
+		do {	
+			if(data[pc].compareTo(key) == 0) return pc;
+			else if(data[pc].compareTo(key) < 0) pc += 1;
+			else pc -= 1;
+		} while (pc <= data.length);
+		return -1;
+	}
+
 	static void showData(PhyscData[] data) {
 		// 난수 생성하여 배열에 입력
 		for (int i = 0; i < data.length; i++) {
-			System.out.println(data[i] + " ");
+			System.out.print(data[i] + " ");
 		}
+		System.out.println();
 	}
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 
-		ArrayList<PhyscData> data = new ArrayList<>();
-		
-			data.add(new PhyscData("홍길동", 162, 0.3));
-			data.add(new PhyscData("홍동", 164, 1.3));
-			data.add(new PhyscData("홍길", 152, 0.7));
-			data.add(new PhyscData("김홍길동", 172, 0.3));
-			data.add(new PhyscData("이길동", 182, 0.6));
-			data.add(new PhyscData("박길동", 167, 0.2));
-			data.add(new PhyscData("최길동", 169, 0.5));
-		
+		PhyscData[] data = {
+				new PhyscData("홍길동", 162, 0.3),
+				new PhyscData("홍동", 164, 1.3),
+				new PhyscData("홍길", 152, 0.7),
+				new PhyscData("김홍길동", 172, 0.3),
+				new PhyscData("이길동", 182, 0.6),
+				new PhyscData("박길동", 167, 0.2),
+				new PhyscData("최길동", 169, 0.5),
+		};
 
-		System.out.println(data);		
-		Collections.sort(data);		
-		System.out.println(data);
-		
-//		showData(data);
-//		sortData(data);
-//		showData(data);
+		showData(data);
+		sortData(data);
+		showData(data);
 	}
 
 }

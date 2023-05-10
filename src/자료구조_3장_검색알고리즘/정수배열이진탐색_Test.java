@@ -3,7 +3,7 @@ package 자료구조_3장_검색알고리즘;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class 정수배열이진탐색 {
+public class 정수배열이진탐색_Test {
 	
 	static void inputData(int [] data) {
 //		Random rd = new Random(99);
