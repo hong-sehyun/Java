@@ -46,7 +46,7 @@ class ObjectStack {
 			throw new OverflowGenericStackException();
 		{
 //			Point p = stk.get(ptr-1); stk.
-			Point p = data.remove(--top);
+			Point p = data.remove(--top); //top-1이 아닌 --top을 해야됨
 			return p;
 		}
 //		return stk[--ptr];
