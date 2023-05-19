@@ -12,16 +12,18 @@ class Queue {
 	private int front; // 맨 처음 요소 커서
 	private int rear; // 맨 끝 요소 커서
 	private int num; // 현재 데이터 개수
-	
-	public class OverflowIntQueueException extends RuntimeException {
-		public OverflowQueueException  () { }
+
+	public class EmptyIntQueueException extends RuntimeException {
+		public EmptyIntQueueException() {
+		}
 	}
 
-	public class EmptyQueueException extends RuntimeException {
-		public EmptyQueueException () {	}
+	public class OverflowIntQueueException extends RuntimeException {
+		public OverflowIntQueueException() {
+		}
 	}
-	
-	public Queue (int maxlen) {
+
+	public Queue(int maxlen) {
 		num = front = rear = 0;
 		capacity = maxlen;
 		try {
@@ -30,21 +32,53 @@ class Queue {
 			capacity = 0;
 		}
 	}
-	
-	public int size () {
+
+	public int size() {
 		return num;
 	}
+
 	public int getCapacity() {
 		return capacity;
 	}
-	
-	public int enque (int x) throws OverflowIntQueueException {
-		if (num >= capacity) throws new OverflowIntQueueException ();
-		que[rear++] = x;
+
+	public int enque(int x) throws OverflowIntQueueException {
+		if (num >= capacity)
+			throw new OverflowIntQueueException();
+		que.add(x);
 		num++;
+		if (rear == capacity)
+			rear = 0;
+		return x;
+	}
+
+	public int deque() throws EmptyIntQueueException {
+		if (num <= 0)
+			throw new EmptyIntQueueException();
+		int x = que.remove(front);
+		num--;
+		if (front == capacity) {
+			front = 0;
+		}
+		return x;
+
+	}
+
+	public int peek() throws EmptyIntQueueException {
+		if (num <= 0)
+			throw new EmptyIntQueueException();
+		return front;
+	}
+
+	public void dump() {
+		if (num <= 0)
+			System.out.println("큐가 비었습니다");
+		else {
+
+				System.out.println(que);
+
+		}
 	}
 }
-
 
 //int형 고정 길이 큐의 사용 예
 public class 큐정수_test {
@@ -61,7 +95,7 @@ public class 큐정수_test {
 			int menu = sc.nextInt();
 			if (menu == 0)
 				break;
-
+			
 			int x;
 			switch (menu) {
 			case 1: // 인큐
@@ -69,7 +103,7 @@ public class 큐정수_test {
 				x = sc.nextInt();
 				try {
 					s.enque(x);
-				} catch (Queue.OverflowQueueException e) {
+				} catch (Queue.EmptyIntQueueException e) {
 					System.out.println("큐가 가득 찼습니다.");
 				}
 				break;
@@ -78,7 +112,7 @@ public class 큐정수_test {
 				try {
 					x = s.deque();
 					System.out.println("디큐한 데이터는 " + x + "입니다.");
-				} catch (Queue.EmptyQueueException e) {
+				} catch (Queue.OverflowIntQueueException e) {
 					System.out.println("큐가 비어 있습니다.");
 				}
 				break;
@@ -87,7 +121,7 @@ public class 큐정수_test {
 				try {
 					x = s.peek();
 					System.out.println("피크한 데이터는 " + x + "입니다.");
-				} catch (Queue.EmptyQueueException e) {
+				} catch (Queue.OverflowIntQueueException e) {
 					System.out.println("큐가 비어 있습니다.");
 				}
 				break;
@@ -97,5 +131,6 @@ public class 큐정수_test {
 				break;
 			}
 		}
+		sc.close();
 	}
 }

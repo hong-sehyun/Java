@@ -1,4 +1,4 @@
-package 자료구조_4장_스택과큐;
+package 자료구조_5장_재귀알고리즘;
 
 import java.util.Scanner;
 
@@ -31,9 +31,9 @@ class IntStack {
 				throw new OverflowIntStackException();
 			return stk[ptr++] = x;
 		}
-		public int pop() throws EmptyIntStackException {
+		public int pop() throws OverflowIntStackException {
 			if (ptr <= 0)
-				throw new EmptyIntStackException();
+				throw new OverflowIntStackException();
 			return stk[--ptr];
 		}
 		public int peek() throws OverflowIntStackException {

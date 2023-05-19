@@ -41,9 +41,9 @@ class ObjectStack {
 		// return data[top++] = x;
 	}
 
-	public Point pop() throws OverflowGenericStackException {
+	public Point pop() throws EmptyGenericStackException {
 		if (top <= 0)
-			throw new OverflowGenericStackException();
+			throw new EmptyGenericStackException();
 		{
 //			Point p = stk.get(ptr-1); stk.
 			Point p = data.remove(--top); //top-1이 아닌 --top을 해야됨
