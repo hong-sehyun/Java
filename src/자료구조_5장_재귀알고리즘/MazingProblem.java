@@ -155,19 +155,16 @@ public class MazingProblem {
 	public static void path(int[][] maze, int[][] mark, int ix, int iy) {
 //		int[][] mark = new int[ix][iy];
 //		int[][] maze = new int[ix][iy];
-		mark[1][1] = 1;
+		mark[0][0] = 1;
 		StackList st = new StackList(50);
-//		StackList st1 = new StackList(50);
+		StackList st1 = new StackList(50);
 		Items temp = new Items(0, 0, 0);//N :: 0
-		temp.x = 1;
-		temp.y = 1;
+		temp.x = 0;
+		temp.y = 0;
 		temp.dir = 2;//E:: 2
 		mark[temp.x][temp.y] = 2;//미로 찾기 궤적은 2로 표시
 		st.push(temp);
 
-		
-		
-		
 		while (!st.isEmpty()) // stack not empty
 		{
 			Items tmp = st.pop(); // unstack
@@ -180,18 +177,16 @@ public class MazingProblem {
 				int g = i + moves[d].a;
 				int h = j + moves[d].b;
 				
-				if ((g == ix) && (h == iy)) { // reached exit
+				if ((g == ix-1) && (h == iy-1)) { // reached exit
 					// output path
 					Items newtmp = new Items(g, h, 0);					
-					st.push(newtmp);
 					maze[g][h] = 2;
+					st1.push(newtmp);
 				}
-				if ((maze[g][h] == 0) && (mark[g][h] == 0)) { // new position
+				else if ((maze[g][h] == 0) && (mark[g][h] == 0)) { // new position
 //					mark[g][h] = 1;
-					st.push(tmp); //경로를 스택에 저장
-					i = g;
-					j = h;
-					d = 0;
+					Items tmp2 = new Items(g, h, 0);//경로를 스택에 저장
+					st.push(tmp2);
 				} else {
 					d++;
 				}
@@ -262,8 +257,8 @@ public class MazingProblem {
 		path(maze, mark, 12, 15);
 
 		System.out.println("mark::");
-		for (int i = 1; i <= 12; i++) {
-			for (int j = 1; j <= 15; j++) {
+		for (int i = 0; i < 12; i++) {
+			for (int j = 0; j < 15; j++) {
 				System.out.print(mark[i][j] + " ");
 
 			}
