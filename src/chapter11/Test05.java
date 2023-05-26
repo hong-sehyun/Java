@@ -20,7 +20,7 @@ public class Test05 {
 		System.out.println("현재 베터리: " + battery);
 	}
 	public static void main(String[] args) {
-		Text05 test = new Test05();
+		Test05 test = new Test05();
 		test.charge(30);
 		test.charge(20);
 		test.charge(-10);
