@@ -34,9 +34,9 @@ class Partition {
         	 count++;
          }
              
-     } while (pl <= pr); {
+     } while (pl <= pr); 
      if(left < pr) quickSort(a, left, pr);
-     if (pl < right) quickSort(a, pl , right); }
+     if (pl < right) quickSort(a, pl , right); 
      System.out.println();
      System.out.println("피벗의 값은 " + x + "입니다.");
 
