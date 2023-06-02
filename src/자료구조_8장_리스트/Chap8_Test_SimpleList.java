@@ -79,7 +79,7 @@ public class Chap8_Test_SimpleList {
           }
           System.out.print(" : ");
           key = sc.nextInt();
-      } while (key < Menu.Insert.ordinal() || 
+      } while (key < Menu.Add.ordinal() || 
                                           key > Menu.Exit.ordinal());
       return Menu.MenuAt(key);
   }
@@ -100,7 +100,7 @@ System.out.println("inserted");
   	         l.Add(data);            
                    break;
            case Delete :                          // 머리 노드 삭제
-          	 int num = l.Delete();
+          	 int num = l.Delete(data);
           	 System.out.println("삭제된 데이터는 " + num);
                   break;
            case Show :                           // 꼬리 노드 삭제
@@ -108,7 +108,7 @@ System.out.println("inserted");
                   break;
            case Search :                           // 회원 번호 검색
        		int n = sc.nextInt();
-              boolean result = l.search(n);
+              boolean result = l.Search(n);
                   if (result == false)
                       System.out.println("검색 값 = " + n + "데이터가 없습니다.");
                   else
@@ -119,5 +119,7 @@ System.out.println("inserted");
           }
       } while (menu != Menu.Exit);
   }
+}
+
 }
 
