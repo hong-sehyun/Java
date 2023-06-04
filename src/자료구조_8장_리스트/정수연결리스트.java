@@ -17,23 +17,29 @@ class Node1 {
 
 class LinkedList1 {
 	Node1 first;
-	Node1 last;
 
 	public LinkedList1() {
 		first = null;
-		last = null;
 	}
 
 	public int Delete(int element) // delete the element
 	{
-		Node1 p = first, q = p; // current
+		Node1 p = first, q = null; // current
 		while (p != null) {
 			p = p.link;
+			if(p.data != element) {
+				q = p;
+				p = p.link;
+			}
 			if (p.data == element) {
-				q = p.link;
+				if(q == null) {
+					first = p.link;
+				}
+//				q = p.link;
 
 			}
 		}
+		q.link = p.link;
 		System.out.println("삭제 완료");
 		return element;
 	}
@@ -79,27 +85,25 @@ class LinkedList1 {
 	
 	{
 		Node1 nd = new Node1(element);
-		Node1 p = first, q = null; // q는 p를 따라감
+		Node1 p = first, q = p; // q는 p를 따라감
 		if (p == null) {
 			first = nd;
 			return;
 		}
 		while (p != null) {
 			if (element <= p.data) {
-				if (q == null) {
-					q = p;
+				if (q == first) {
 					nd.link = p;
 					first = nd;
 					return;
 				} else {
 					nd.link = p;
-					first.link = nd;
+					q.link = nd;
 					return;
 				}
-			} else if (element > p.data) {
-				
-				p = p.link;
+			} else if (element >= p.data) {
 				q = p;
+				p = p.link;
 				if (p == null) {
 					q.link = nd;
 					return;
