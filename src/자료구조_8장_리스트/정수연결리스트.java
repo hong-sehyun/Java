@@ -24,24 +24,33 @@ class LinkedList1 {
 
 	public int Delete(int element) // delete the element
 	{
-		Node1 p = first, q = null; // current
+		Node1 p = first, q = p; // current
+		if(p == null) {
+			return -1;
+		}
 		while (p != null) {
-			p = p.link;
 			if(p.data != element) {
 				q = p;
 				p = p.link;
 			}
 			if (p.data == element) {
-				if(q == null) {
+				if (p == first) {
 					first = p.link;
 				}
+				else {
+					q.link = p.link;
+				}
+				return 1;
+				//p = p.link;
+				//if(q == null) {
+				//	first = p.link;
+				//}
 //				q = p.link;
-
+				//first.link = p.link;
 			}
 		}
-		q.link = p.link;
-		System.out.println("삭제 완료");
-		return element;
+//		System.out.println("삭제 완료");
+		return -1;
 	}
 
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
