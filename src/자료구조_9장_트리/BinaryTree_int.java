@@ -145,12 +145,20 @@ class Tree {
 
 	boolean search(int num) {
 		TreeNode p = root;
+		if (p == null) {
+			return false;
+		}
 		while(p!=null) {
 			if(p.data == num) {
-				System.out.println("있음");
+				break;
 			}
+			else if (p.data > num) {
+				p = p.LeftChild;
+			} else
+				p = p.RightChild;
 		}
-		return false;
+		return true;
+		
 	}
 }
 
