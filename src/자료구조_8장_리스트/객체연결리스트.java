@@ -74,39 +74,66 @@ class LinkedList2 {
 	
 	public int Delete(SimpleObject element, Comparator<SimpleObject> cc) //delete the element
 	{
-		return 0;
+		Node2 p = first, q = p;
+//		if (p==null) {
+//			return -1;
+//		}
+		
+		while (p != null) {
+			if(cc.compare(element, p.data) < 0) {
+				q = p;
+				p = p.link;
+			}
+			
+			if (cc.compare(element, p.data) == 0) {
+				if (p == first) {
+					first = p.link;
+				}
+				else {
+					q.link = p.link;
+				}
+				return -1;
+			}
+		}
+		return -1;
 	
 	}
 	public void Show() { // 전체 리스트를 순서대로 출력한다.
-	
+		Node2 p = first;
+		while (p != null) {
+			// p출력
+			System.out.println(p.data);
+			p = p.link;
+		}
 	}
 	public void Add(SimpleObject element, Comparator<SimpleObject> cc) //임의 값을 삽입할 때 리스트가 오름차순으로 정렬이 되도록 한다 
 	{
-		Node1 nd = new Node1(element);
-		Node1 p = first, q = p; //q는 p를 따라감
+		Node2 nd = new Node2(element);
+		Node2 p = first, q = p; //q는 p를 따라감
 		if (p == null) {
 			first = nd;
 			return;
 		}
 		while( p != null)
 		{
-			if(cc.compare(element, p.data) < 0 {)
-			if (element < p.data) {
-				if (q == first	) {
+			if(cc.compare(element, p.data) < 0) {
+//			if (element < p.data) {
+				if (q == first) {
 					nd.link = p;
 					first = nd;
 					return;
 				}
-//				else {
-//					nd.link = q;
-//					first = nd;
-//					return;
-//				}
+				else {
+					nd.link = p;
+					q.link = nd;
+					return;
+				}
 			}
-			else if ( element > p.data) {
+			else if (cc.compare(element, p.data) > 0) {
 				q = p;
 				p = p.link;	
-				if(p == null) {
+				if(p == first) {
+					q.link = nd;
 					return;
 				}
 			}
