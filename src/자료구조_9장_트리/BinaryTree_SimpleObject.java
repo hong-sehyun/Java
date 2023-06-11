@@ -151,17 +151,118 @@ class Tree4 {
 	}
 
 	public boolean add(SimpleObject2 obj, Comparator<? super SimpleObject2> c) {
+		TreeNode4 tmp = new TreeNode4(obj);
+		TreeNode4 p = root,  q=p;
+		if(p == null ) {
+			root = tmp;
+			return false;
+		}
+		while(p!=null) {
+			q = p;
+			if(c.compare(obj, p.data) <= 0) {
 
+				p = p.LeftChild;
+			}
+			else if(c.compare(obj, p.data) > 0) {
+				p = p.RightChild;
+			}
+			
+		}
+		if(c.compare(obj, q.data) <= 0) {
+			q.LeftChild = tmp;
+		}
+		else {
+			q.RightChild = tmp;
+		}
+		return true;
 	}
 
 	public boolean delete(SimpleObject2 obj, Comparator<? super SimpleObject2> c) {
+		    if (root == null) {
+		        return false;
+		    }
+
+		    TreeNode4 p = root;
+		    TreeNode4 q = findParent(p, c);
 
 
-	}
+		    while (p != null && c.compare(obj, p.data) != 0) {
+		        q = p;
+
+		        if (c.compare(obj, p.data) < 0) {
+		            p = p.LeftChild;
+		        } else {
+		            p = p.RightChild;
+		        }
+		    }
+
+		    if (p == null) {
+		        return false; 
+		    }
+
+		    //child가 없는 노드 삭제
+		    if (isLeafNode(p)) {
+		        if (p == root) {
+		            root = null;
+		        } else if (p == q.LeftChild) {
+		            q.LeftChild = null;
+		        } else {
+		            q.RightChild = null;
+		        }
+		    }
+		    //child가 1개인 노드 삭제
+		    else if (p.RightChild == null) {
+		        if (p == root) {
+		            root = p.LeftChild;
+		        } else if (p == q.LeftChild) {
+		            q.LeftChild = p.LeftChild;
+		        } else {
+		            q.RightChild = p.LeftChild;
+		        }
+		    } else if (p.LeftChild == null) {
+		        if (p == root) {
+		            root = p.RightChild;
+		        } else if (p == q.LeftChild) {
+		            q.LeftChild = p.RightChild;
+		        } else {
+		            q.RightChild = p.RightChild;
+		        }
+		    }
+		    // child가 2개인 노드 삭제
+		    else {
+		        TreeNode4 s = inorderSucc(p);
+		        if (p == root) {
+		            root = s;
+		        } else if (p == q.LeftChild) {
+		            q.LeftChild = s;
+		        } else {
+		            q.RightChild = s;
+		        }
+		        s.LeftChild = p.LeftChild;
+		    }
+
+		    return true;
+		}
+
 
 	boolean search(SimpleObject2 obj, Comparator<? super SimpleObject2> c) {
-
+		TreeNode4 p = root;
+		if (p == null) {
+			return false;
+		}
+		while(p!=null) {
+			if(c.compare(obj, p.data) == 0) {
+				return true;
+			}
+			else if (c.compare(obj, p.data) > 0) {
+				p = p.LeftChild;
+			} else
+				p = p.RightChild;
+		}
+		return false;
+		
 	}
+	
 }
 
 public class BinaryTree_SimpleObject {

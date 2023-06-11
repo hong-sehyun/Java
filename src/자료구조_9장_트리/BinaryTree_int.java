@@ -1,5 +1,5 @@
 package 자료구조_9장_트리;
-
+//홍세현
 /*
  * 23.6.7 3회차 실습 코드
  */
@@ -26,6 +26,7 @@ class Tree {
 		root = null;
 	}
 
+	//현재 노드의 다음에 방문해야 할 노드를 찾는 메서드
 	TreeNode inorderSucc(TreeNode current) { //successor 
 		TreeNode temp = current.RightChild;
 		if (current.RightChild != null)
@@ -34,6 +35,7 @@ class Tree {
 		return temp;
 	}
 
+	//current가 자식 노드가 없는 노드인지 확인
 	boolean isLeafNode(TreeNode current) {
 		if (current.LeftChild == null && current.RightChild == null)
 			return true;
@@ -80,11 +82,7 @@ class Tree {
 	boolean insert(int x) {// binary search tree를 만드는 입력 => A + B * C을 tree로 만드는 방법: 입력 해결하는 알고리즘 작성 방법을
 							// 설계하여 구현		
 		TreeNode p = root,  q=p;
-//		int branchMode = 0;
-//		if(branchMode == 1)
-//			q.LeftChild = new TreeNode(1);
-//		if(branchMode == 2)
-//			q.RightChild = new TreeNode(2);
+
 		TreeNode tmp = new TreeNode(x);
 		
 		if(p == null ) {
@@ -112,37 +110,75 @@ class Tree {
 	}
 
 	boolean delete(int num) {
-		TreeNode p = root,  q=p;
-		//child가 없는 노드 삭제
-		
-		while (p != null ) {
-			if (p.data != num) {
-				q = p;
-				if (num < p.data) {
-					p = p.LeftChild;
-				}
-				else if(num > p.data) {
-					p = p.RightChild;
-				}
-				
-			}
-			if(p.data == num) {
-				p = null;
-//				if(q.data > num) {
-//					q.LeftChild = null;
-//					q.LeftChild =
-//				}
-				return true;
-			}
-		}
-		
-		return false;
-		
-		//child가 1개인 노드 삭제
-		//child가 2개인 노드 삭제
+	    if (root == null) {
+	        return false; 
+	    }
+	    TreeNode p = root, q = null;
+	  
+	    while (p != null && p.data != num) {
+	        q = p;
 
+	        if (num < p.data) {
+	            p = p.LeftChild;
+	        } else {
+	            p = p.RightChild;
+	        }
+	    }
+
+	    if (p == null) {
+	        return false; 
+	    }
+
+	    //child가 없는 노드 삭제
+	    if (isLeafNode(p)) {
+	        if (p == root) {
+	            root = null;
+	        } 
+	        else if (p == q.LeftChild) {
+	            q.LeftChild = null;
+	        } 
+	        else {
+	            q.RightChild = null;
+	        }
+	    }
+	    //child가 1개인 노드 삭제
+	    else if (p.RightChild == null) {
+	        if (p == root) {
+	            root = p.LeftChild;
+	        } else if (p == q.LeftChild) {
+	            q.LeftChild = p.LeftChild;
+	        } else {
+	            q.RightChild = p.LeftChild;
+	        }
+	    } 
+	    
+	    else if (p.LeftChild == null) {
+	        if (p == root) {
+	            root = p.RightChild;
+	        } else if (p == q.LeftChild) {
+	            q.LeftChild = p.RightChild;
+	        } else {
+	            q.RightChild = p.RightChild;
+	        }
+	    }
+	    //child가 2개인 노드 삭제
+	    else {
+	        TreeNode s = inorderSucc(p);
+	        if (p == root) {
+	            root = s;
+	        } else if (p == q.LeftChild) {
+	            q.LeftChild = s;
+	        } else {
+	            q.RightChild = s;
+	        }
+	        s.LeftChild = p.LeftChild;
+	    }
+
+	    return true;
 	}
-
+	
+	
+	
 	boolean search(int num) {
 		TreeNode p = root;
 		if (p == null) {
@@ -150,14 +186,14 @@ class Tree {
 		}
 		while(p!=null) {
 			if(p.data == num) {
-				break;
+				return true;
 			}
 			else if (p.data > num) {
 				p = p.LeftChild;
 			} else
 				p = p.RightChild;
 		}
-		return true;
+		return false;
 		
 	}
 }
