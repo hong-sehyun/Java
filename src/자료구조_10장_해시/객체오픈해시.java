@@ -186,10 +186,10 @@ class OpenHash {
 	public int remove(SimpleObject2 key, Comparator<? super SimpleObject2> c) {
 		Bucket p = searchNode(key, c); // 주목 버킷
 		if (p == null)
-			return 1; // 이 키값은 등록되어 있지 않음
+			return 0; // 이 키값은 등록되어 있지 않음
 
 		p.setStat(Status.DELETED);
-		return 0;
+		return 1;
 	}
 
 	// --- 해시 테이블을 덤프(dump) ---//
