@@ -1,13 +1,9 @@
 package 자료구조_8장_리스트;
 
-<<<<<<< HEAD
-public class 객체원형리스트 {
 
-=======
 /*
  * 정수 리스트 > 객체 리스트> 객체 원형 리스트
  */
-import java.util.Comparator;
 import java.util.Scanner;
 
 class SimpleObject3 {
