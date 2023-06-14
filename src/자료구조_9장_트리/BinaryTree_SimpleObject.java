@@ -254,7 +254,7 @@ class Tree4 {
 			if(c.compare(obj, p.data) == 0) {
 				return true;
 			}
-			else if (c.compare(obj, p.data) > 0) {
+			else if (c.compare(obj, p.data) < 0) {
 				p = p.LeftChild;
 			} else
 				p = p.RightChild;
